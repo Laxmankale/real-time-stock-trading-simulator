@@ -5,6 +5,7 @@ import com.lucky.trade_service.producer.TradeProducer;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/trade")
@@ -17,7 +18,7 @@ public class TradeController {
     }
 
     @PostMapping
-    public String placeTrade(@RequestBody TradeEvent tradeEvent) {
+    public String placeTrade(@Valid @RequestBody TradeEvent tradeEvent) {
 
         try {
             tradeProducer.sendTradeEvent(tradeEvent);
